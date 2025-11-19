@@ -50,6 +50,60 @@ ls /mnt/OS3
 
 Laboratorios del modulo VII Practica 2
 
+sudo apt update
 
+sudo apt install samba -y
 
+sudo systemctl enable smdb
+
+sudo systemctl status 
+
+sudo mkdir -p /srv/samba/shared 
+
+sudo groupadd sambashared
+
+sudo useradd -M -S /sbin/nologin adrian1
+
+sudo usermod -aG sambashare adrian1
+
+sudo smbpasswd -a adrian1
+
+sudo chown -R adrian1:sambashare /srv/samba/shared
+
+sudo chmod -R 770 /srv/samba/shared
+
+sudo nano /etc/samba/smb.conf 
+
+[shared]
+   path = /srv/samba/shared
+   browseable = yes 
+   writable = yes
+   valid users = @sambashare
+   create mask = 0660
+   directory mask = 2770
+
+sudo systemctl restart smbd
+
+cd /srv/samba/shared
+for i in $(seq 1 100); do
+  touch adrian$i.txt
+done
+
+sudo -l
+
+ls
+
+this pc 
+computer
+map network drive
+
+\\192.168.7.120\shared
+
+sudo chown -R adrian1:sambashare /srv/samba/shared
+
+sudo chmod -R 7770 /srv/samba/shared
+
+ls 
+
+cat adrian99.txt
 
