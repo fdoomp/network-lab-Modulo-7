@@ -107,3 +107,155 @@ ls
 
 cat adrian99.txt
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Laboratorios del modulo VII Practica 3
+
+hostname sambaus
+
+reboot
+
+hostname 
+
+sudo su
+
+echo "192.168.1.11 OS3.inet" >> /etc/host
+
+dnf -y update 
+
+dnf repolist 
+
+dnf config-manager --disable epel epel-cisco-openh264
+
+dnf -y update 
+
+dnf repolist all 
+
+dnf install epel-release
+
+dnf config-manager --enable ol10_codeready_builder
+
+dnf repolist
+
+dnf install -y oracle-epel-release-eli0
+
+dnf repolist all 
+
+dnf update
+
+sudo dnf makecache 
+
+dnf -y install wget tar gcc make python3-devel 
+
+mkdir -p /samba && cd /samba
+
+ls
+
+tar -zxvf samba-4.16.2.tar.gz && cd samba-4.16.2/
+
+exit 
+
+sudo dnf install -y \
+
+docbook-style-xsl python3-markdown bison dbus-devel flex gdb \
+
+gnutls-devel jansson-devel keyutils-libs-devel krb5-workstation \
+
+libacl-devel libaio-devel libarchive-devel libattr-devel libblkid-devel \
+
+libtasn1 libtasn1-tools libxml2-devel libxslt lmdb-devel openldap-devel \
+
+pam-devel perl perl-ExtUtils-MakeMaker perl-Perse-Yapp popt-devel\
+
+python3-cryptography python3-dns python3-gpg readline-devel rpcgen \
+
+systemd-devel zlib-devel perl-JSON gpgme-devel screen 
+
+sudo su
+
+cd /samba 
+
+ls
+
+cd samba-4.16.2/
+
+./configure --prefix=/usr/local/samba --enable-fhs --with-ads --with-systemd
+
+make -j$(nproc)
+
+make install
+
+export PATH=/usr/local/samba/bin:/usr/local/samba/bin:/usr/local/samba/sbin:$PATH
+
+nano ~/.bash_profile 
+
+PATH=$PATH:$HOME/bin:/usr/local/samba/bin:/usr/local/samba/sbin:$PATH
+
+export PATH
+
+nano ../.bash_profile
+
+PATH=$PATH:$HOME/bin/usr/local/amba/bin:/usr/local/amba/bin:$PATH
+
+export PATH
+
+samba-tool domain provision --use-rfc2307 --interactive --option="interfaces = lo ens33" --option="bind interfaces only=yes"
+
+echo "/usr/local/samba" | sudo tee /etc/ld.so.conf.d/samba.conf 
+
+echo "/usr/local/samba/lib64" | sudo tee -a /etc/ld.so.conf.d/samba.conf
+
+echo "/usr/local/samba/lib" | sudo tee -a /etc/ld.so.conf.d/samba.conf
+
+ldconfig
+
+samba-tool domain provision --use-rfc2307 --interactive --option="interfaces = lo ens33" --option="bind interfaces only=yes"
+
+OS3.inet
+lo dejamos asi
+lo dejamos asi 
+lo dejamos asi 
+mi puerta de enlace 
+
+colocamos contrasena 
+
+ping google.com 
+
+ping OS3.inet 
+
+cat /etc/hosts
+
+nslookup OS3.inet 
+
+cp /usr/local/samba/var/lib/samba/private/krb5.conf /etc/krb5.conf 
+
+firewall-cmd --permanent --add-server={ldap,ldaps,Kerberos,dns}
+
+firewall-cmd --permanent --add-port={53,88,135,139,389,445,464,636,3268,3269}/tcp
+
+firewall-cmd --permanent --add-port={53,88,123,138,139,464}/udp
+ 
+firewall-cmd --reload 
+
+samba 
+
+samba-tool domain passwordsetting set --complexity=off
+
+samba-tool domain passwordsettings show 
+
+samba-tool user create lanegracubana 20242332
+
+samba-tool group addmembers "Domain Admins" lanegracubana
+
+OS3.inet
+
+samba-tool dns add 192.168.1.11 OS3.inet www A 192.168.1.12 -U Administrator 
+
+
+
+
+
+
+
+
+
